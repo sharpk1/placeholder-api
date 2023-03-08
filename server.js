@@ -17,7 +17,9 @@ mongoose.set("strictQuery", true);
 connect();
 
 const userRouter = require("./routes/users");
+const phoneRouter = require("./routes/phone");
 app.use("/users", userRouter);
+app.use("/phone", phoneRouter);
 
 app.listen(8000, () => {
   console.log("Server started on port 8000");
