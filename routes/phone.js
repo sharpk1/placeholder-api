@@ -21,6 +21,7 @@ router.get("/get-service-sid", async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
+  console.log(req.query.phone);
   try {
     console.log(req.query.phone);
     client.verify.v2
