@@ -36,6 +36,7 @@ router.get("/login", async (req, res) => {
 
 router.get("/verify", async (req, res) => {
   try {
+    // Twilio verification
     client.verify.v2
       .services("VA3b13399f7151cffa3f05157085e52543")
       .verificationChecks.create({
