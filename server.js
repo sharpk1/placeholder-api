@@ -18,8 +18,10 @@ connect();
 
 const userRouter = require("./routes/users");
 const phoneRouter = require("./routes/phone");
+const loyaltyRouter = require("./routes/loyalty");
 app.use("/users", userRouter);
 app.use("/phone", phoneRouter);
+app.use("/loyalty", loyaltyRouter);
 
 app.listen(8000, () => {
   console.log("Server started on port 8000");
