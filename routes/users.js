@@ -63,6 +63,18 @@ router.post("/incrementPunch", async (req, res) => {
       return res.status(404).json({ message: "Punch card not found" });
     }
 
+    const date = new Date();
+    date.setHours(date.getHours() - 24);
+
+    if (
+      punchCardToUpdate.lastPunchDate &&
+      punchCardToUpdate.lastPunchDate >= date
+    ) {
+      return res
+        .status(404)
+        .json({ message: "Punch card was scanned less than 24 hours ago." });
+    }
+
     if (punchCardToUpdate.punches + 1 >= punchCardToUpdate.requiredPunches) {
       punchCardToUpdate.punches = 1;
     } else {
@@ -104,5 +116,26 @@ router.get(
     }
   }
 );
+
+router.get("/loyalty/getPunchCardByStoreId", async (req, res) => {
+  const { phoneNumber, storeId } = req.query;
+
+  try {
+    const loyalty = await Loyalty.findOne(
+      { phoneNumber: phoneNumber },
+      { punchCards: { $elemMatch: { storeId: storeId } } }
+    ).exec();
+
+    if (!loyalty) {
+      return res.status(404).json({ message: "Loyalty not found" });
+    }
+
+    const punchCard = loyalty.punchCards[0];
+    return res.status(200).json({ punchCard: punchCard });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+});
 
 module.exports = router;

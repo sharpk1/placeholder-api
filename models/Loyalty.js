@@ -6,6 +6,7 @@ const PunchCardSchema = new mongoose.Schema({
   storeId: Number,
   punches: Number,
   requiredPunches: Number,
+  lastPunchDate: Date,
 });
 
 const LoyaltySchema = new mongoose.Schema({
