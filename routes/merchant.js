@@ -20,6 +20,15 @@ router.post("/merchants", async (req, res) => {
       phone,
       deals: [], // Set up an empty deals array
       campaigns: [], // Set up an empty campaigns array
+      storeHours: {
+        Monday: { open: "09:00", close: "17:00" },
+        Tuesday: { open: "09:00", close: "17:00" },
+        Wednesday: { open: "09:00", close: "17:00" },
+        Thursday: { open: "09:00", close: "17:00" },
+        Friday: { open: "09:00", close: "17:00" },
+        Saturday: { open: "Closed", close: "Closed" },
+        Sunday: { open: "Closed", close: "Closed" },
+      },
     });
 
     await newMerchant.save();

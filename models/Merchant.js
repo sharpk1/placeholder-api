@@ -32,6 +32,36 @@ const merchantSchema = new mongoose.Schema({
       isComplete: { type: Boolean, default: false },
     },
   ],
+  storeHours: {
+    Monday: {
+      open: { type: String },
+      close: { type: String },
+    },
+    Tuesday: {
+      open: { type: String },
+      close: { type: String },
+    },
+    Wednesday: {
+      open: { type: String },
+      close: { type: String },
+    },
+    Thursday: {
+      open: { type: String },
+      close: { type: String },
+    },
+    Friday: {
+      open: { type: String },
+      close: { type: String },
+    },
+    Saturday: {
+      open: { type: String },
+      close: { type: String },
+    },
+    Sunday: {
+      open: { type: String },
+      close: { type: String },
+    },
+  },
 });
 
 module.exports = mongoose.model("Merchant", merchantSchema);
